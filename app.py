@@ -23,12 +23,11 @@ def get_trilhas():
 st.title("Trilhas Universitárias")
 
 # --- Sidebar de navegação ---
-pagina = st.sidebar.selectbox("Navegar para:", ['Início', 'Sobre','Programação'])
+pagina = st.sidebar.selectbox("Navegar para:", ['Início', 'Programação'])
 
-if pagina == 'Sobre':
+if pagina == 'Início':
     st.markdown("[Instagram do Trilhas Universitárias](https://www.instagram.com/trilhasuniversitarias)")
 
-    st.write("## Sobre")
     st.write("""
     Fala, galera! 😎✨
 
@@ -71,10 +70,10 @@ if pagina == 'Sobre':
 elif pagina == "Programação":
     st.header("Programação")
 
-    st.markdown("## Eventos Programados")
+    
     df = get_trilhas()
     for index, row in df.iterrows():
-        grupo_link = f"[Entrar no grupo]({row['grupo']})" if pd.notna(row['grupo']) else 'Pergunte no grupo oficial'
+        grupo_link = f"[Entrar no grupo]({row['grupo']})" if pd.notna(row['grupo']) else 'Não definido'
 
         st.markdown(f"""
         **📅 Data:** {row['data'].strftime('%d/%m/%Y')}
@@ -83,7 +82,9 @@ elif pagina == "Programação":
 
         **📝 Descrição:** {row['descrição']}
         ---
-        """)#**👥 Grupo:** {grupo_link}
+        """)
+
+#**👥 Grupo:** {grupo_link}
 
 
 
